@@ -23,14 +23,10 @@ public class LedController {
     @GetMapping(path = "/getlednext")
     public ResponseEntity<ResponseDTO> getLedNext(){
         return new ResponseEntity<>(new ResponseDTO(
-                200, listDeService.getLeds().getLedNext(), null), HttpStatus.OK);
+                200,listDeService.getLeds().getLedNext(), null), HttpStatus.OK);
     }
 
-    @GetMapping(path = "/getledprev")
-    public ResponseEntity<ResponseDTO> getLedPrev(){
-        return new ResponseEntity<>(new ResponseDTO(
-                200, listDeService.getLeds().getLedPrev(), null), HttpStatus.OK);
-    }
+
     @PostMapping(path ="/addled")
     public ResponseEntity<ResponseDTO> addLed(@RequestBody LedDTO ledDTO) {
         // Verificar si el bombillo ya existe
@@ -64,17 +60,6 @@ public class LedController {
                 HttpStatus.OK);
     }
 
-    @GetMapping(path ="/turnonleds")
-    public ResponseEntity<ResponseDTO> turnOnAllLeds() throws InterruptedException {
-        listDeService.getLeds().turnOnAllLeds();// llamada al método que enciende todos los LEDs
-        return new ResponseEntity<>(new ResponseDTO(200, "Los bombillos se han encendido", null), HttpStatus.OK);
-    }
-
-    @GetMapping(path ="/turnoffallleds")
-    public ResponseEntity<ResponseDTO> turnOffAllLeds() throws InterruptedException {
-        listDeService.getLeds().turnOffAllLeds();
-        return new ResponseEntity<>(new ResponseDTO(200, "Todos los LEDs se han apagado", null), HttpStatus.OK);
-    }
     @GetMapping(path="turnoftrunon")
     public ResponseEntity<ResponseDTO> offOnLeds() throws  InterruptedException{
         listDeService.getLeds().offOnLeds();
